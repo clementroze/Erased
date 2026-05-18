@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la /Users/clement/.claude/projects/-Users-clement-Documents-GitHub-CLASS-2812/memory/ 2>/dev/null && echo \"---\" && find \"/Users/clement/Documents/GitHub\" -maxdepth 2 -type d 2>/dev/null | head -30)",
+      "Read(//Users/clement/Documents/GitHub/**)",
+      "Bash(find \"/Users/clement\" -maxdepth 4 -type d -iname \"*class*\" 2>/dev/null | head -20 && echo \"---\" && find \"/Users/clement/Downloads\" -maxdepth 2 -iname \"*sequoyah*\" -o -iname \"*cushman*\" -o -iname \"*cherokee*\" -o -iname \"*writing*\" 2>/dev/null | head -20)",
+      "Read(//Users/clement/**)",
+      "Read(//Users/clement/Downloads/**)",
+      "Skill(frontend-design:frontend-design)",
+      "Skill(frontend-design:frontend-design:*)",
+      "Bash(python3 -m http.server 8765)",
+      "Bash(curl -s -o /dev/null -w \"Google Fonts HTTP %{http_code} · %{size_download} bytes\\\\n\" \"https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Cherokee&family=Noto+Sans+Vai&family=Noto+Sans+NKo&family=Noto+Sans+Bamum&display=swap\")",
+      "Bash(open \"http://localhost:8765/\")",
+      "WebFetch(domain:en.wikipedia.org)",
+      "Bash(curl -s -o /dev/null -w \"index.html  HTTP %{http_code} · %{size_download}b\\\\n\" http://localhost:8765/)",
+      "Bash(curl -s -o /dev/null -w \"style.css   HTTP %{http_code} · %{size_download}b\\\\n\" http://localhost:8765/style.css)",
+      "Bash(curl -s -o /dev/null -w \"main.js     HTTP %{http_code} · %{size_download}b\\\\n\" http://localhost:8765/main.js)",
+      "Bash(curl -s -o /dev/null -w \"index.html %{http_code} · %{size_download}b\\\\nstyle.css  %{http_code} · %{size_download}b\\\\n\" http://localhost:8765/ http://localhost:8765/style.css)",
+      "Bash(curl -s -o /dev/null -w \"index %{http_code}/%{size_download}b · css %{http_code}\\\\n\" http://localhost:8765/ http://localhost:8765/style.css)"
+    ]
+  }
+}

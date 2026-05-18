@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Erased — Writing Systems Suppressed Under Colonial Power</title>
+    <meta
+      name="description"
+      content="A scroll-driven essay on four writing systems suppressed or erased under colonial and state power: Cherokee, Vai, N'Ko, and Maya."
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+    <!-- Theme color -->
+    <meta name="theme-color" content="#861C1A" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Erased — Writing Systems Suppressed Under Colonial Power" />
+    <meta property="og:description" content="A scroll-driven essay on four writing systems suppressed or erased under colonial and state power: Cherokee, Vai, N'Ko, and Maya." />
+    <meta property="og:image" content="thumbnail.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Erased — Writing Systems Suppressed Under Colonial Power" />
+    <meta name="twitter:description" content="A scroll-driven essay on four writing systems suppressed or erased under colonial and state power: Cherokee, Vai, N'Ko, and Maya." />
+    <meta name="twitter:image" content="thumbnail.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Cherokee&family=Noto+Sans+Vai&family=Noto+Sans+NKo&display=swap"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <svg class="grain" aria-hidden="true">
+      <filter id="grain-filter">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.9"
+          numOctaves="2"
+          stitchTiles="stitch"
+        />
+        <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.35 0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#grain-filter)" />
+    </svg>
+
+    <nav class="margin-nav" aria-label="Sections">
+      <ol>
+        <li>
+          <a href="#cherokee"
+            ><span class="margin-glyph cherokee">Ꭰ</span
+            ><span class="margin-name">Cherokee</span></a
+          >
+        </li>
+        <li>
+          <a href="#vai"
+            ><span class="margin-glyph vai">ꕉ</span
+            ><span class="margin-name">Vai</span></a
+          >
+        </li>
+        <li>
+          <a href="#nko"
+            ><span class="margin-glyph nko">ߒ</span
+            ><span class="margin-name">N'Ko</span></a
+          >
+        </li>
+        <li>
+          <a href="#maya"
+            ><span class="margin-glyph maya-mark" aria-hidden="true">◬</span
+            ><span class="margin-name">Maya</span></a
+          >
+        </li>
+      </ol>
+    </nav>
+
+    <main>
+      <!-- 0. COVER -->
+      <section class="cover" id="cover">
+        <div class="cover-rule top" aria-hidden="true"></div>
+        <h1 class="cover-title">
+          <span class="cover-letter" style="--i: 0">E</span
+          ><span class="cover-letter" style="--i: 1">R</span
+          ><span class="cover-letter" style="--i: 2">A</span
+          ><span class="cover-letter" style="--i: 3">S</span
+          ><span class="cover-letter" style="--i: 4">E</span
+          ><span class="cover-letter" style="--i: 5">D</span>
+        </h1>
+        <div class="cover-rule bottom" aria-hidden="true"></div>
+        <p class="cover-sub">
+          <em
+            >Four writing systems suppressed
+            under&nbsp;colonial&nbsp;and&nbsp;state&nbsp;power.</em
+          >
+        </p>
+        <p class="cover-cue" aria-hidden="true">↓ <span>scroll</span></p>
+      </section>
+
+      <section class="thesis section--dark" id="thesis">
+        <div class="section-rail">
+          <span class="rail-num">i.</span>
+          <span class="rail-label">Intro</span>
+        </div>
+        <div class="thesis-inner">
+          <p class="dropcap reveal">
+            <span class="dc">W</span>riting systems are never politically
+            neutral. Every script encodes a claim &mdash; about who counts as a
+            people, whose words are worth preserving, whose silence is
+            acceptable. The medium you are reading this in, a website, is no
+            exception.
+          </p>
+          <p class="reveal" data-delay="100">
+            The web defaults to the Roman alphabet at every layer: in the bytes
+            of URL links, in the order of Unicode encoding, in the keyboards on
+            your desk, in the fallback fonts your browser ships with. Latin was
+            standardized first, fastest, and most completely. Every other script
+            came later &mdash; if it came at all.
+          </p>
+
+          <p class="reveal" data-delay="200">
+            Sometimes, on the web, you might see empty boxes:
+            <span class="mono">&#x25A1;</span>
+            <span class="mono">&#x25A1;</span>
+            <span class="mono">&#x25A1;</span>. This empty box is called
+            <em>tofu</em>. Google named its open-source font family
+            <em>Noto</em> &mdash; &ldquo;no tofu&rdquo; &mdash; in an attempt to
+            cover every character in Unicode. Their mission is to support all
+            languages and symbol to ensure seamless digital communciation
+            globally. The very existence of that project is an admission: by
+            default, the web cannot render most of the scripts the world has
+            invented.
+          </p>
+          <p class="reveal" data-delay="300">
+            The pages that follow are written in four scripts the world tried to
+            make disappear. Where they appear here as glyphs, they have
+            survived. Where they appear as <span class="mono">&#x25A1;</span>,
+            the infrastructure has failed them.
+          </p>
+        </div>
+      </section>
+
+      <!-- 2. CHEROKEE -->
+      <section class="script-section section--paper" id="cherokee">
+        <div class="section-rail">
+          <span class="rail-num">ii.</span>
+          <span class="rail-label">Cherokee</span>
+        </div>
+        <header class="script-head">
+          <p class="script-endonym cherokee reveal">ᏣᎳᎩ</p>
+          <h2 class="script-name reveal" data-delay="80">Cherokee</h2>
+          <dl class="script-meta reveal" data-delay="160">
+            <div>
+              <dt>Inventor</dt>
+              <dd>Sequoyah (ᏏᏉᏯ)</dd>
+            </div>
+            <div>
+              <dt>Completed</dt>
+              <dd>1821</dd>
+            </div>
+            <div>
+              <dt>Type</dt>
+              <dd>Syllabary, 86 characters</dd>
+            </div>
+            <div>
+              <dt>Unicode (uppercase)</dt>
+              <dd class="mono">U+13A0&ndash;U+13FF · 1999</dd>
+            </div>
+            <div>
+              <dt>Supplement (lowercase)</dt>
+              <dd class="mono">U+AB70&ndash;U+ABBF · 2015</dd>
+            </div>
+          </dl>
+        </header>
+
+        <div class="script-body">
+          <p class="reveal">
+            Sequoyah, a Cherokee silversmith who could not read English, spent
+            twelve years building a syllabary from nothing. By 1825 the Cherokee
+            Nation had a higher literacy rate than the white settlers around it.
+            By 1828 it had a bilingual newspaper, <em>The Cherokee Phoenix</em>,
+            set in type cast from Sequoyah&rsquo;s designs.
+          </p>
+          <p class="reveal" data-delay="100">
+            Two years later, the United States passed the Indian Removal Act. In
+            the winter of 1838&ndash;39, the Cherokee were marched west on what
+            they called <span class="cherokee">ᎤᏪᏥ ᏧᎾᏕᏯᏔᏅ</span> &mdash;
+            <em>the trail where they cried</em>. The syllabary went with them.
+          </p>
+          <p class="reveal" data-delay="200">
+            Through the late nineteenth and twentieth centuries, federal
+            boarding schools beat the script out of Cherokee children alongside
+            the language. Speakers and readers shrank to a few thousand. But the
+            script survived because the community refused to let it die.
+          </p>
+
+          <figure class="script-sample reveal" data-delay="300">
+            <p class="sample-text cherokee">ᎠᏂᏴᏫᏯ</p>
+            <figcaption>
+              <em>Aniyvwiya</em> &mdash; &ldquo;the principal people,&rdquo; the
+              Cherokee endonym.
+            </figcaption>
+          </figure>
+
+          <p class="reveal" data-delay="400">
+            Cherokee was added to Unicode in 1999. The lowercase characters
+            &mdash; cast by Sequoyah but never encoded &mdash; waited until
+            2015. For sixteen years, half of the script existed and the web
+            could not see it.
+          </p>
+        </div>
+      </section>
+
+      <!-- 3. VAI -->
+      <section class="script-section section--dark" id="vai">
+        <div class="section-rail">
+          <span class="rail-num">iii.</span>
+          <span class="rail-label">Vai</span>
+        </div>
+        <header class="script-head">
+          <p class="script-endonym vai reveal">ꕙꔤ</p>
+          <h2 class="script-name reveal" data-delay="80">Vai</h2>
+          <dl class="script-meta reveal" data-delay="160">
+            <div>
+              <dt>Inventor</dt>
+              <dd>Mọmọlu Duwalu Bukẹlẹ</dd>
+            </div>
+            <div>
+              <dt>Created</dt>
+              <dd>&nbsp;1832&ndash;1833</dd>
+            </div>
+            <div>
+              <dt>Region</dt>
+              <dd>Liberia &amp; Sierra&nbsp;Leone</dd>
+            </div>
+            <div>
+              <dt>Type</dt>
+              <dd>Syllabary, ~210&nbsp;characters</dd>
+            </div>
+            <div>
+              <dt>Unicode</dt>
+              <dd class="mono">U+A500&ndash;U+A63F · 2008</dd>
+            </div>
+          </dl>
+        </header>
+
+        <div class="script-body">
+          <p class="reveal">
+            Bukẹlẹ said the script came to him in a dream. He and a small group
+            of collaborators in the Vai-speaking towns of present-day Liberia
+            worked it into a teachable syllabary within a year. By the 1840s,
+            European visitors were reporting Vai literacy in villages where no
+            missionary had ever set foot.
+          </p>
+          <p class="reveal" data-delay="100">
+            Vai literacy was the first documented case of mass literacy in West
+            Africa achieved <em>without</em> the alphabet, the Quran, or the
+            colonial school. It demonstrated that African societies invented
+            writing on their own terms, when they needed it, in the form they
+            chose &mdash; an argument the colonists could not accommodate.
+          </p>
+          <p class="reveal" data-delay="200">
+            English-medium schooling, established under Americo-Liberian and
+            later British and American mission control, treated Vai as folk
+            knowledge rather than as a literate tradition. The script was
+            tolerated, then ignored, then forgotten in the curricula of the
+            people who used it.
+          </p>
+
+          <figure class="script-sample reveal" data-delay="300">
+            <p class="sample-text vai">ꕉꕩ ꔀ ꖸ</p>
+            <figcaption>A line of Vai characters.</figcaption>
+          </figure>
+
+          <p class="reveal" data-delay="400">
+            Vai entered Unicode in 2008, one hundred and seventy-five years
+            after Bukẹlẹ taught it to his first student.
+          </p>
+        </div>
+      </section>
+
+      <!-- 4. N'KO (RTL) -->
+      <section class="script-section section--paper" id="nko">
+        <div class="section-rail">
+          <span class="rail-num">iv.</span>
+          <span class="rail-label">N'Ko</span>
+        </div>
+        <header class="script-head">
+          <p class="script-endonym nko reveal" dir="rtl">ߒߞߏ</p>
+          <h2 class="script-name reveal" data-delay="80">N&rsquo;Ko</h2>
+          <dl class="script-meta reveal" data-delay="160">
+            <div>
+              <dt>Inventor</dt>
+              <dd>Solomana Kanté</dd>
+            </div>
+            <div>
+              <dt>Created</dt>
+              <dd>1949</dd>
+            </div>
+            <div>
+              <dt>Regions</dt>
+              <dd>Guinea, Côte d'Ivoire, Mali</dd>
+            </div>
+            <div>
+              <dt>Direction</dt>
+              <dd>Right&nbsp;to&nbsp;left</dd>
+            </div>
+            <div>
+              <dt>Unicode</dt>
+              <dd class="mono">U+07C0&ndash;U+07FF · 2006</dd>
+            </div>
+          </dl>
+        </header>
+
+        <div class="script-body">
+          <p class="reveal">
+            As a young man, Solomana Kanté was angered that foreigners
+            considered Africans without culture since they didn't have their own
+            writing system. In response, he developed N&rsquo;Ko &mdash;
+            literally <em>&ldquo;I&nbsp;say&rdquo;</em>, the phrase that all
+            Manding speakers share across dialects.
+          </p>
+          <p class="reveal" data-delay="100">
+            Kanté chose to write it right-to-left, in the direction of Arabic,
+            the script of Islamic learning in West Africa. He chose to give it
+            its own letterforms, distinct from Latin and Arabic alike. He chose
+            to make the orthography easy to teach and owned by no colonial
+            power. Within a decade, N&rsquo;Ko schools and presses had spread
+            across Guinea, Mali, Côte d&rsquo;Ivoire, and beyond.
+          </p>
+          <p class="reveal" data-delay="200">
+            N&rsquo;Ko spread through grassroots literacy associations and
+            private schools rather than through state systems. It remained the
+            script of choice for many Manding speakers as a marker of cultural
+            and linguistic identity.
+          </p>
+
+          <figure class="script-sample reveal" data-delay="300">
+            <p class="sample-text nko" dir="rtl">ߒߞߏ ߞߊ߲</p>
+            <figcaption>
+              <em>N&rsquo;ko kang</em> &mdash; &ldquo;the N&rsquo;Ko
+              language.&rdquo; Reading direction is reversed: the eye begins at
+              the right edge of the line.
+            </figcaption>
+          </figure>
+
+          <p class="reveal" data-delay="400">
+            N&rsquo;Ko was added to Unicode in 2006. Web rendering of
+            right-to-left scripts requires explicit declarations &mdash;
+            <span class="mono">dir=&quot;rtl&quot;</span>,
+            <span class="mono">unicode-bidi: embed</span> &mdash; that the spec
+            considers exceptional. However, the default of this medium
+            – websites – remains left to right.
+          </p>
+        </div>
+      </section>
+
+      <!-- 5. MAYA -->
+      <section class="script-section section--dark section--maya" id="maya">
+        <div class="section-rail">
+          <span class="rail-num">v.</span>
+          <span class="rail-label">Maya</span>
+        </div>
+        <header class="script-head">
+          <img
+            src="maya.jpeg"
+            alt="Classic period Maya glyphs"
+            class="maya-pic"
+          />
+
+          <h2 class="script-name reveal" data-delay="80">Maya</h2>
+          <dl class="script-meta reveal" data-delay="160">
+            <div>
+              <dt>Scribes</dt>
+              <dd>Anonymous, over centuries</dd>
+            </div>
+            <div>
+              <dt>Appearance</dt>
+              <dd>~2000 CE</dd>
+            </div>
+            <div>
+              <dt>Type</dt>
+              <dd>
+                Logosyllabic &mdash; signs&nbsp;for&nbsp;words and syllables
+              </dd>
+            </div>
+            <div>
+              <dt>Surviving codices</dt>
+              <dd>Four</dd>
+            </div>
+            <div>
+              <dt>Unicode</dt>
+              <dd class="mono">&mdash; not encoded &mdash;</dd>
+            </div>
+          </dl>
+        </header>
+
+        <div class="script-body">
+          <p class="reveal">
+            On the twelfth of July, 1562, Diego de Landa, Franciscan bishop of
+            Yucatán, gathered the painted books of the Maya and burned them.
+            &ldquo;We found a large number of books in these characters,&rdquo;
+            he wrote, &ldquo;and as they contained nothing in which there were
+            not to be seen superstition and lies of the devil, we burned them
+            all, which they regretted to an amazing degree, and which caused
+            them much affliction.&rdquo;
+          </p>
+          <p class="reveal" data-delay="100">
+            Four pre-Columbian Maya codices survived. Three are named for the
+            European cities where they ended up — Dresden, Madrid, Paris —
+            rather than for the towns where they were written. The fourth, the
+            Maya Codex of Mexico (formerly the Grolier Codex), is held at the
+            National Museum of Anthropology in Mexico City.
+          </p>
+          <p class="reveal" data-delay="200">
+            The Maya script has no Unicode block. A proposal exists; it has not
+            been ratified. The image below is not text, and the tofu boxes below
+            aren't either. The browser cannot search it, copy it, screen-read
+            it, or index it. The web treats Maya writing as an image.
+          </p>
+
+          <figure class="script-sample maya-sample reveal" data-delay="300">
+            <p class="sample-text maya-placeholder">
+              <span class="mono">&#x25A1; &#x25A1; &#x25A1;</span>
+            </p>
+            <figcaption>
+              What Maya writing looks like to your browser. Three tofu boxes
+              &mdash; no font, no encoding, no glyph.
+            </figcaption>
+          </figure>
+
+          <p class="reveal" data-delay="400">
+            The other three scripts in this essay were eventually granted
+            addresses in the universal character set. Maya is still waiting for
+            the standards body to assign it a number.
+          </p>
+        </div>
+      </section>
+
+      <!-- 6. UNICODE TIMELINE -->
+      <section class="timeline section--paper" id="timeline">
+        <div class="section-rail">
+          <span class="rail-num">vi.</span>
+          <span class="rail-label">Conclusion</span>
+        </div>
+        <div class="timeline-inner">
+          <h2 class="timeline-title reveal">The Order of Arrival</h2>
+          <p class="timeline-lede reveal" data-delay="100">
+            Each row plots a script from <em>invention</em> to <em>Unicode
+            encoding</em>. The bar measures the gap between the two: the years
+            a script existed before the standard gave it an address.
+          </p>
+          <p class="timeline-note reveal" data-delay="150">
+            <em
+              >Bars are roughly proportional but not strictly to scale &mdash;
+              ancient origins are compressed so the chart fits. The axis runs
+              c.&nbsp;1700&nbsp;&rarr;&nbsp;today.</em
+            >
+          </p>
+
+          <div class="t-row t-row--axis reveal" data-delay="180" aria-hidden="true">
+            <span class="t-label"></span>
+            <div class="t-track t-track--axis">
+              <span class="t-tick" style="left: 0%">1700</span>
+              <span class="t-tick" style="left: 30.3%">1800</span>
+              <span class="t-tick" style="left: 60.6%">1900</span>
+              <span class="t-tick" style="left: 90.9%">2000</span>
+            </div>
+            <span class="t-gap"></span>
+          </div>
+
+          <ul class="timeline-list" role="list">
+            <li
+              class="t-row t-row--ancient reveal"
+              data-delay="220"
+              style="--inv: 0%; --enc: 88.2%"
+            >
+              <span class="t-label">Latin</span>
+              <div class="t-track">
+                <span class="t-extend-left" aria-hidden="true"></span>
+                <span class="t-bar"></span>
+                <span class="t-date t-date--inv">c.&nbsp;700&nbsp;BCE&nbsp;&larr;</span>
+                <span class="t-date t-date--enc">1991</span>
+              </div>
+              <span class="t-gap mono">in from day one</span>
+            </li>
+
+            <li
+              class="t-row reveal"
+              data-delay="280"
+              style="--inv: 36.7%; --enc: 90.6%"
+            >
+              <span class="t-label">Cherokee</span>
+              <div class="t-track">
+                <span class="t-bar"></span>
+                <span class="t-date t-date--inv">1821</span>
+                <span class="t-date t-date--enc">1999</span>
+              </div>
+              <span class="t-gap mono">178-year wait</span>
+            </li>
+
+            <li
+              class="t-row reveal"
+              data-delay="340"
+              style="--inv: 75.5%; --enc: 92.7%"
+            >
+              <span class="t-label">N&rsquo;Ko</span>
+              <div class="t-track">
+                <span class="t-bar"></span>
+                <span class="t-date t-date--inv">1949</span>
+                <span class="t-date t-date--enc">2006</span>
+              </div>
+              <span class="t-gap mono">57-year wait</span>
+            </li>
+
+            <li
+              class="t-row reveal"
+              data-delay="400"
+              style="--inv: 40.3%; --enc: 93.3%"
+            >
+              <span class="t-label">Vai</span>
+              <div class="t-track">
+                <span class="t-bar"></span>
+                <span class="t-date t-date--inv">1833</span>
+                <span class="t-date t-date--enc">2008</span>
+              </div>
+              <span class="t-gap mono">175-year wait</span>
+            </li>
+
+            <li
+              class="t-row t-row--ancient t-row--absent reveal"
+              data-delay="460"
+              style="--inv: 0%; --enc: 100%"
+            >
+              <span class="t-label">Maya</span>
+              <div class="t-track">
+                <span class="t-extend-left" aria-hidden="true"></span>
+                <span class="t-extend-right" aria-hidden="true"></span>
+                <span class="t-bar t-bar--dotted"></span>
+                <span class="t-date t-date--inv">c.&nbsp;250&nbsp;CE&nbsp;&larr;</span>
+                <span class="t-date t-date--enc">&rarr;&nbsp;pending</span>
+              </div>
+              <span class="t-gap mono">~1,775 years, counting</span>
+            </li>
+          </ul>
+
+          <p class="timeline-foot reveal" data-delay="560">
+            Cherokee and Vai &mdash; two of the most successful indigenous
+            script inventions of the nineteenth century &mdash; each waited
+            close to two centuries for the Unicode Consortium to assign them an
+            address. N&rsquo;Ko slipped in within sixty years, partly because it
+            was invented when international encoding standards were already
+            taking shape. Latin was there from day one. Maya, the oldest of
+            these systems, is still waiting in line.
+          </p>
+        </div>
+      </section>
+
+      <!-- 8. CLOSING -->
+      <section class="closing" id="closing">
+        <div class="closing-inner">
+          <p class="closing-stack">
+            <span class="closing-line cherokee reveal">ᏣᎳᎩ</span>
+            <span class="closing-line vai reveal" data-delay="100">ꕙꔤ</span>
+            <span class="closing-line nko reveal" data-delay="200" dir="rtl"
+              >ߒߞߏ</span
+            >
+            <span
+              class="closing-line reveal"
+              data-delay="300"
+              aria-hidden="true"
+              >&#x25A1;&#x25A1;&#x25A1;</span
+            >
+          </p>
+
+          <footer class="colophon reveal" data-delay="700">
+            <p>
+              <em>Erased</em>. A scroll essay by Clément Rozé. Built in HTML,
+              CSS, and JavaScript for CLASS&nbsp;2812
+              <em>Hieroglyphs to HTML: History of Writing</em>, Cornell
+              University, Spring&nbsp;2026.
+            </p>
+            <p class="colo-meta mono">
+              Latin text set in Fraunces &amp; Newsreader font · <br />Script
+              glyphs in Noto Sans font
+            </p>
+          </footer>
+        </div>
+      </section>
+    </main>
+
+    <script src="main.js" defer></script>
+  </body>
+</html>

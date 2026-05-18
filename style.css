@@ -1,0 +1,1067 @@
+/* =========================================================================
+   ERASED — stylesheet
+   archival / memorial aesthetic
+   ========================================================================= */
+
+/* ---------- 1. tokens ---------------------------------------------------- */
+:root {
+  /* color */
+  --ink-night: #0c0b08; /* deep almost-black, warm */
+  --ink-night-2: #14110c; /* slightly lifted for layered cards */
+  --paper: #ebe2cf; /* aged cream */
+  --paper-deep: #ddd2b8; /* deeper paper for accents */
+  --text-on-night: #f1ead9;
+  --text-on-paper: #1a1610;
+  --dim-on-night: #7a7160;
+  --dim-on-paper: #6b5f47;
+  --rule-on-night: #3b3528;
+  --rule-on-paper: #b8aa8a;
+  --blood: #8a2a23; /* erasure red, desaturated */
+  --gold: #b08a3e; /* used once, in closing */
+
+  /* type */
+  --f-display: "Fraunces", "Cormorant Garamond", Georgia, serif;
+  --f-body: "Newsreader", "Cormorant Garamond", Georgia, serif;
+  --f-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* scale */
+  --gutter: clamp(1.5rem, 5vw, 5rem);
+  --measure: 60ch;
+
+  /* easings */
+  --ease-out-soft: cubic-bezier(0.16, 0.84, 0.34, 1);
+  --ease-out-slow: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ---------- 2. reset / base --------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--ink-night);
+  color: var(--text-on-night);
+  font-family: var(--f-body);
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.2rem);
+  line-height: 1.55;
+  font-weight: 380;
+  font-optical-sizing: auto;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--blood);
+  color: var(--text-on-night);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------- 3. grain overlay -------------------------------------------- */
+.grain {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+}
+
+/* ---------- 4. margin nav ----------------------------------------------- */
+.margin-nav {
+  position: fixed;
+  right: clamp(0.75rem, 2.2vw, 2.2rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 60;
+  opacity: 0;
+  transition: opacity 800ms var(--ease-out-soft);
+}
+.margin-nav.is-visible {
+  opacity: 1;
+}
+.margin-nav ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.margin-nav a {
+  display: grid;
+  grid-template-columns: 1.4em auto;
+  align-items: center;
+  gap: 0.7em;
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim-on-night);
+  transition: color 240ms ease;
+}
+.margin-nav a:hover,
+.margin-nav a:focus-visible {
+  color: var(--text-on-night);
+  outline: none;
+}
+.margin-glyph {
+  font-size: 1.1rem;
+  line-height: 1;
+  text-align: center;
+  color: var(--dim-on-night);
+  transition: color 240ms ease;
+}
+.margin-nav a:hover .margin-glyph {
+  color: var(--blood);
+}
+.margin-name {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity 240ms ease,
+    transform 240ms ease;
+}
+.margin-nav a:hover .margin-name,
+.margin-nav a:focus-visible .margin-name {
+  opacity: 1;
+  transform: translateX(0);
+}
+/* invert margin-nav over paper sections */
+body.over-paper .margin-nav a {
+  color: var(--dim-on-paper);
+}
+body.over-paper .margin-nav a .margin-glyph {
+  color: var(--dim-on-paper);
+}
+body.over-paper .margin-nav a:hover {
+  color: var(--text-on-paper);
+}
+body.over-paper .margin-nav a:hover .margin-glyph {
+  color: var(--blood);
+}
+
+@media (max-width: 720px) {
+  .margin-nav {
+    display: none;
+  }
+}
+
+/* ---------- 5. section primitives --------------------------------------- */
+main {
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+
+.section--dark {
+  background: var(--ink-night);
+  color: var(--text-on-night);
+}
+.section--paper {
+  background: var(--paper);
+  color: var(--text-on-paper);
+}
+
+.section-rail {
+  position: absolute;
+  top: clamp(2rem, 6vh, 4.5rem);
+  left: var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dim-on-night);
+}
+.section--paper .section-rail {
+  color: var(--dim-on-paper);
+}
+.section-rail::before {
+  content: "";
+  width: 2.4rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.rail-num {
+  font-style: italic;
+  letter-spacing: 0;
+  font-family: var(--f-display);
+  text-transform: lowercase;
+  font-size: 0.95rem;
+  color: var(--blood);
+}
+
+/* reveal primitive */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 1100ms var(--ease-out-soft),
+    transform 1100ms var(--ease-out-soft);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* mono inline */
+.mono {
+  font-family: var(--f-mono);
+  font-size: 0.85em;
+  letter-spacing: 0.02em;
+  color: var(--dim-on-night);
+}
+.section--paper .mono {
+  color: var(--dim-on-paper);
+}
+
+/* per-script font classes */
+.cherokee {
+  font-family: "Noto Sans Cherokee", var(--f-display), serif;
+}
+.vai {
+  font-family: "Noto Sans Vai", var(--f-display), serif;
+}
+.nko {
+  font-family: "Noto Sans NKo", var(--f-display), serif;
+  direction: rtl;
+  unicode-bidi: embed;
+}
+
+/* ---------- 6. cover ---------------------------------------------------- */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gutter);
+  position: relative;
+  text-align: center;
+  background: radial-gradient(
+    ellipse at 50% 30%,
+    #1a1610 0%,
+    var(--ink-night) 60%,
+    #050402 100%
+  );
+}
+.cover-rule {
+  width: min(60vw, 32rem);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--dim-on-night) 30%,
+    var(--dim-on-night) 70%,
+    transparent
+  );
+  margin: 1.6rem 0;
+  opacity: 0;
+  animation: fade-in 1600ms var(--ease-out-soft) 400ms forwards;
+}
+.cover-title {
+  font-family: var(--f-display);
+  font-weight: 360;
+  font-style: italic;
+  font-size: clamp(4.5rem, 16vw, 11rem);
+  line-height: 0.95;
+  letter-spacing: 0.18em;
+  margin: 0;
+  padding-left: 0.18em; /* offset italic lean */
+  color: var(--text-on-night);
+  font-variation-settings:
+    "opsz" 144,
+    "SOFT" 30,
+    "WONK" 0;
+}
+.cover-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: letter-rise 1400ms var(--ease-out-soft) forwards;
+  animation-delay: calc(120ms * var(--i, 0) + 200ms);
+}
+@keyframes letter-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
+}
+.cover-sub {
+  font-family: var(--f-body);
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
+  font-weight: 360;
+  max-width: 30ch;
+  margin: 0.6rem 0 2.4rem;
+  color: var(--text-on-night);
+  opacity: 0;
+  animation: fade-in 1400ms var(--ease-out-soft) 1400ms forwards;
+}
+.cover-meta {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--dim-on-night);
+  margin: 0;
+  opacity: 0;
+  animation: fade-in 1400ms var(--ease-out-soft) 1800ms forwards;
+}
+.cover-cue {
+  position: absolute;
+  bottom: clamp(1.5rem, 4vh, 3rem);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--dim-on-night);
+  opacity: 0;
+  animation:
+    fade-in 1400ms var(--ease-out-soft) 2400ms forwards,
+    cue-bob 2400ms ease-in-out 3200ms infinite;
+}
+.cover-cue span {
+  padding-left: 0.4em;
+}
+@keyframes cue-bob {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 6px);
+  }
+}
+
+/* ---------- 7. thesis --------------------------------------------------- */
+.thesis {
+  position: relative;
+  padding: clamp(7rem, 16vh, 12rem) var(--gutter);
+}
+.thesis-inner {
+  max-width: var(--measure);
+  margin: 0 auto;
+  font-size: clamp(1.05rem, 0.9rem + 0.5vw, 1.25rem);
+  line-height: 1.7;
+}
+.thesis-inner p {
+  margin: 0 0 1.4em;
+}
+
+/* drop cap */
+.dropcap .dc {
+  float: left;
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 360;
+  font-size: 5.2em;
+  line-height: 0.85;
+  padding: 0.08em 0.18em 0 0;
+  margin-top: 0.08em;
+  color: var(--blood);
+  font-variation-settings:
+    "opsz" 144,
+    "SOFT" 50;
+}
+
+/* tofu / glyph swap demo */
+.tofu-demo {
+  margin: 3rem 0;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid var(--rule-on-night);
+  background: var(--ink-night-2);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: center;
+}
+@media (max-width: 560px) {
+  .tofu-demo {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+.tofu-stage {
+  position: relative;
+  width: 5.5rem;
+  height: 6rem;
+  display: grid;
+  place-items: center;
+}
+.tofu-char {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 5rem;
+  line-height: 1;
+  font-family: var(--f-display);
+  color: var(--text-on-night);
+  transition: opacity 1200ms var(--ease-out-soft);
+}
+.tofu-char[data-state="tofu"] {
+  opacity: 1;
+}
+.tofu-char[data-state="glyph"] {
+  opacity: 0;
+  color: var(--blood);
+}
+.tofu-demo.is-revealed .tofu-char[data-state="tofu"] {
+  opacity: 0;
+}
+.tofu-demo.is-revealed .tofu-char[data-state="glyph"] {
+  opacity: 1;
+}
+
+.tofu-caption {
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  color: var(--dim-on-night);
+  margin: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+.tofu-line {
+  display: block;
+}
+.tofu-line em {
+  color: var(--text-on-night);
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+.tofu-line--state {
+  position: relative;
+  min-height: 1.6em;
+}
+.tofu-state {
+  display: block;
+  position: absolute;
+  inset: 0;
+  transition: opacity 800ms var(--ease-out-soft);
+  font-family: var(--f-body);
+  font-size: 0.95rem;
+  letter-spacing: 0;
+  color: var(--text-on-night);
+  text-transform: none;
+}
+.state-tofu {
+  opacity: 1;
+}
+.state-glyph {
+  opacity: 0;
+}
+.tofu-demo.is-revealed .state-tofu {
+  opacity: 0;
+}
+.tofu-demo.is-revealed .state-glyph {
+  opacity: 1;
+}
+.tofu-inline {
+  font-size: 1.4em;
+}
+
+/* ---------- 8. script section template ---------------------------------- */
+.script-section {
+  position: relative;
+  padding: clamp(7rem, 16vh, 12rem) var(--gutter);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2.5rem, 6vh, 5rem);
+  max-width: 100%;
+}
+.script-head {
+  display: grid;
+  gap: 1rem;
+  max-width: 70rem;
+  margin: 0 auto;
+  width: 100%;
+}
+.script-endonym {
+  font-size: clamp(6rem, 22vw, 16rem);
+  line-height: 0.9;
+  margin: 0;
+  text-align: left;
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+}
+.section--dark .script-endonym {
+  color: var(--text-on-night);
+}
+.section--paper .script-endonym {
+  color: var(--text-on-paper);
+}
+.nko.script-endonym {
+  text-align: right;
+}
+
+.script-name {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 320;
+  font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+  font-variation-settings:
+    "opsz" 60,
+    "SOFT" 40;
+}
+
+.script-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1rem 2rem;
+  margin: 0.4rem 0 0;
+  padding: 1.2rem 0 0;
+  border-top: 1px solid var(--rule-on-night);
+}
+.section--paper .script-meta {
+  border-top-color: var(--rule-on-paper);
+}
+.script-meta > div {
+  display: grid;
+  gap: 0.15rem;
+}
+.script-meta dt {
+  font-family: var(--f-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dim-on-night);
+}
+.section--paper .script-meta dt {
+  color: var(--dim-on-paper);
+}
+.script-meta dd {
+  font-family: var(--f-body);
+  font-size: 0.98rem;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.script-body {
+  max-width: var(--measure);
+  margin: 0 auto;
+  width: 100%;
+  font-size: clamp(1.05rem, 0.9rem + 0.4vw, 1.2rem);
+  line-height: 1.7;
+}
+.script-body p {
+  margin: 0 0 1.4em;
+}
+
+.script-sample {
+  margin: 3rem 0;
+  padding: 2rem 0;
+  border-top: 1px solid var(--rule-on-night);
+  border-bottom: 1px solid var(--rule-on-night);
+}
+.section--paper .script-sample {
+  border-color: var(--rule-on-paper);
+}
+.sample-text {
+  font-size: clamp(2.2rem, 7vw, 4.5rem);
+  line-height: 1.15;
+  margin: 0 0 1rem;
+  letter-spacing: 0.01em;
+}
+.script-sample figcaption {
+  font-family: var(--f-body);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--dim-on-night);
+  max-width: 50ch;
+  line-height: 1.55;
+}
+.section--paper .script-sample figcaption {
+  color: var(--dim-on-paper);
+}
+
+/* ---------- 9. maya glyph + strike ------------------------------------- */
+.section--maya {
+  padding-top: clamp(7rem, 16vh, 12rem);
+}
+.maya-hero {
+  display: grid;
+  place-items: center;
+  margin: 0 auto 1.4rem;
+}
+.maya-glyph {
+  width: clamp(10rem, 22vw, 18rem);
+  height: auto;
+  overflow: visible;
+}
+.maya-stroke {
+  fill: none;
+  stroke: var(--text-on-night);
+  stroke-width: 4;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.maya-fill {
+  fill: var(--text-on-night);
+  stroke: none;
+}
+.maya-strike {
+  stroke: var(--blood);
+  stroke-width: 6;
+  fill: none;
+  stroke-dasharray: 280;
+  stroke-dashoffset: 280;
+  transition: stroke-dashoffset 1600ms var(--ease-out-slow);
+}
+.section--maya.is-struck .maya-strike {
+  stroke-dashoffset: 0;
+}
+
+.maya-sample .sample-text {
+  font-family: var(--f-mono);
+  font-size: clamp(2rem, 6vw, 3.6rem);
+  color: var(--dim-on-night);
+}
+.maya-placeholder .mono {
+  font-size: 1em;
+  letter-spacing: 0.2em;
+  color: var(--dim-on-night);
+}
+
+/* ---------- 10. timeline ----------------------------------------------- */
+.timeline {
+  padding: clamp(7rem, 16vh, 12rem) var(--gutter);
+  position: relative;
+}
+.timeline-inner {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+.timeline-title {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 320;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  margin: 0 0 1rem;
+  letter-spacing: 0.01em;
+  font-variation-settings:
+    "opsz" 144,
+    "SOFT" 40;
+}
+.timeline-lede {
+  max-width: var(--measure);
+  margin: 0 0 1rem;
+  font-size: clamp(1.05rem, 0.9rem + 0.4vw, 1.2rem);
+  line-height: 1.7;
+}
+.timeline-note {
+  max-width: var(--measure);
+  margin: 0 0 3rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--dim-on-paper);
+}
+.timeline-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 3rem;
+  display: grid;
+  gap: 0;
+}
+
+/* shared row template — also used by axis */
+.t-row {
+  display: grid;
+  grid-template-columns: minmax(6rem, 8rem) 1fr minmax(8rem, 12rem);
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  padding: 1.6rem 0;
+  border-bottom: 1px solid var(--rule-on-paper);
+}
+.t-row--axis {
+  padding: 0 0 0.6rem;
+  border-bottom: 1px solid var(--rule-on-paper);
+  margin-bottom: 0.2rem;
+}
+
+.t-label {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: clamp(1.2rem, 2vw, 1.7rem);
+  letter-spacing: 0.02em;
+}
+
+/* track — the horizontal plot area */
+.t-track {
+  position: relative;
+  height: 52px;
+}
+.t-track::before {
+  /* baseline through middle */
+  content: "";
+  position: absolute;
+  inset: 50% 0 auto 0;
+  height: 1px;
+  background: var(--rule-on-paper);
+  opacity: 0.55;
+  transform: translateY(-50%);
+}
+.t-track--axis {
+  height: 22px;
+}
+.t-track--axis::before {
+  display: none;
+}
+
+/* invention → encoding bar */
+.t-bar {
+  position: absolute;
+  top: 50%;
+  left: var(--inv, 0%);
+  width: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--blood), #c25a4f);
+  transform: translateY(-50%);
+  transition: width 1800ms var(--ease-out-slow);
+  transition-delay: 200ms;
+  border-radius: 1px;
+}
+.t-row.is-visible .t-bar {
+  width: calc(var(--enc, 0%) - var(--inv, 0%));
+}
+.t-bar--dotted {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--dim-on-paper) 0,
+    var(--dim-on-paper) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+/* dashed extensions for ancient origins and pending encodings */
+.t-extend-left,
+.t-extend-right {
+  position: absolute;
+  top: 50%;
+  height: 2px;
+  transform: translateY(-50%);
+  background-image: radial-gradient(
+    circle,
+    var(--dim-on-paper) 1px,
+    transparent 1.5px
+  );
+  background-size: 7px 2px;
+  background-repeat: repeat-x;
+  opacity: 0.7;
+}
+.t-extend-left {
+  left: -3.5rem;
+  width: calc(3.5rem + var(--inv, 0%));
+}
+.t-extend-right {
+  left: var(--enc, 100%);
+  width: calc(3.5rem + (100% - var(--enc, 100%)));
+}
+
+/* date markers above (invention) and below (encoding) */
+.t-date {
+  position: absolute;
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  line-height: 1;
+}
+.t-date--inv {
+  bottom: calc(50% + 10px);
+  left: var(--inv, 0%);
+  transform: translateX(-50%);
+  color: var(--dim-on-paper);
+}
+.t-date--enc {
+  top: calc(50% + 10px);
+  left: var(--enc, 100%);
+  transform: translateX(-50%);
+  color: var(--blood);
+  font-weight: 500;
+}
+/* small vertical tick connecting label to bar */
+.t-date::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 1px;
+  height: 6px;
+  background: currentColor;
+  opacity: 0.55;
+}
+.t-date--inv::after {
+  bottom: -8px;
+  transform: translateX(-50%);
+}
+.t-date--enc::after {
+  top: -8px;
+  transform: translateX(-50%);
+}
+
+/* edge-aware anchoring so date labels don't clip off the track */
+.t-row--ancient .t-date--inv {
+  transform: translateX(0);
+  text-align: left;
+}
+.t-row--ancient .t-date--inv::after {
+  left: 0;
+  transform: translateX(0);
+}
+.t-row--absent .t-date--enc {
+  transform: translateX(-100%);
+  text-align: right;
+}
+.t-row--absent .t-date--enc::after {
+  left: 100%;
+  transform: translateX(-100%);
+}
+.t-row--absent .t-date--enc {
+  color: var(--dim-on-paper);
+  font-style: italic;
+}
+
+/* axis ticks */
+.t-tick {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  font-family: var(--f-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  color: var(--dim-on-paper);
+  padding-top: 8px;
+  white-space: nowrap;
+}
+.t-tick::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 5px;
+  background: var(--dim-on-paper);
+  transform: translateX(-50%);
+  opacity: 0.7;
+}
+
+/* right-column gap label */
+.t-gap {
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--dim-on-paper);
+  text-align: right;
+}
+.t-row--absent .t-gap {
+  color: var(--blood);
+  font-style: italic;
+}
+
+@media (max-width: 720px) {
+  .t-row,
+  .t-row--axis {
+    grid-template-columns: 5rem 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.6rem clamp(0.6rem, 3vw, 1.2rem);
+  }
+  .t-row .t-gap {
+    grid-column: 2 / 3;
+    text-align: left;
+    font-size: 0.7rem;
+  }
+  .t-row--axis .t-gap {
+    display: none;
+  }
+  .t-track {
+    height: 46px;
+  }
+  .t-date {
+    font-size: 0.6rem;
+  }
+  .t-label {
+    font-size: 1.1rem;
+  }
+  .t-extend-left {
+    left: -1.5rem;
+    width: calc(1.5rem + var(--inv, 0%));
+  }
+  .t-extend-right {
+    width: calc(1.5rem + (100% - var(--enc, 100%)));
+  }
+}
+
+.timeline-foot {
+  max-width: var(--measure);
+  font-size: clamp(1rem, 0.85rem + 0.4vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--text-on-paper);
+}
+
+/* ---------- 11. closing ------------------------------------------------ */
+.closing {
+  background: var(--ink-night);
+  color: var(--text-on-night);
+  padding: clamp(8rem, 20vh, 16rem) var(--gutter);
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  position: relative;
+}
+.closing-inner {
+  max-width: 40rem;
+}
+.closing-stack {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0 0 4rem;
+  padding: 0;
+}
+.closing-line {
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+.closing-line.maya-line {
+  font-family: var(--f-display);
+  color: var(--blood);
+  letter-spacing: 0.3em;
+}
+.closing-coda {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 320;
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  line-height: 1.5;
+  margin: 0 0 4rem;
+  letter-spacing: 0.04em;
+  color: var(--text-on-night);
+  font-variation-settings:
+    "opsz" 144,
+    "SOFT" 30;
+}
+.closing-coda em {
+  color: var(--gold);
+  font-style: italic;
+}
+.colophon {
+  font-family: var(--f-body);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--dim-on-night);
+  max-width: 36rem;
+  margin: 0 auto;
+}
+.colophon p {
+  margin: 0 0 0.6em;
+}
+.colo-meta {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ---------- 12. responsive --------------------------------------------- */
+@media (max-width: 720px) {
+  .section-rail {
+    font-size: 0.62rem;
+    gap: 0.6rem;
+    top: clamp(1.5rem, 4vh, 3rem);
+  }
+  .section-rail::before {
+    width: 1.6rem;
+  }
+  .script-section {
+    padding-left: clamp(1.1rem, 6vw, 2rem);
+    padding-right: clamp(1.1rem, 6vw, 2rem);
+  }
+  .script-endonym {
+    font-size: clamp(5rem, 26vw, 10rem);
+  }
+  .script-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ---------- 13. motion preference -------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .t-bar {
+    width: calc(var(--enc, 0%) - var(--inv, 0%)) !important;
+  }
+  .section--maya .maya-strike {
+    stroke-dashoffset: 0 !important;
+  }
+  .tofu-demo .tofu-char[data-state="tofu"] {
+    opacity: 0;
+  }
+  .tofu-demo .tofu-char[data-state="glyph"] {
+    opacity: 1;
+  }
+  .tofu-demo .state-tofu {
+    opacity: 0;
+  }
+  .tofu-demo .state-glyph {
+    opacity: 1;
+  }
+}
+
+.maya-pic {
+  width: 50%;
+  border-radius: 6px;
+  margin: 0 auto;
+}
